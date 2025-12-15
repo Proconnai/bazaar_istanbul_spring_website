@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bazaar Istanbul Spring | Halal Meat & International Groceries</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --turkish-red: #B82C3A;
+            --turkish-red-dark: #8E2230;
+            --istanbul-blue: #1A3A6B;
+            --istanbul-blue-light: #2A4A7B;
+            --cream: #F5E0D1;
+            --cream-light: #FBF4EF;
+            --cream-dark: #E8D0C0;
+            --gold: #C9A961;
+            --gold-light: #D4BC7D;
+            --charcoal: #2A2A2A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream-light);
+            color: var(--charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Decorative Pattern */
+        .pattern-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231A3A6B' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0.25rem 2rem;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(245, 224, 209, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(26, 58, 107, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--turkish-red);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+
+        .logo span {
+            color: var(--istanbul-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--turkish-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--turkish-red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-light) 50%, var(--cream-dark) 100%);
+            overflow: hidden;
+        }
+
+        .hero-decoration {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border: 1px solid var(--istanbul-blue);
+            opacity: 0.1;
+            border-radius: 50%;
+            animation: rotate 60s linear infinite;
+        }
+
+        .hero-decoration:nth-child(1) {
+            top: -200px;
+            right: -200px;
+        }
+
+        .hero-decoration:nth-child(2) {
+            bottom: -300px;
+            left: -300px;
+            width: 800px;
+            height: 800px;
+            animation-direction: reverse;
+            animation-duration: 80s;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--istanbul-blue);
+            color: var(--cream-light);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            color: var(--turkish-red);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero h1 span {
+            color: var(--istanbul-blue);
+            display: block;
+        }
+
+        .hero-tagline {
+            font-size: 1.3rem;
+            color: var(--charcoal);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--turkish-red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--turkish-red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(184, 44, 58, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--istanbul-blue);
+            border: 2px solid var(--istanbul-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--istanbul-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .hero-scroll svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--istanbul-blue);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            background: white;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--istanbul-blue);
+            font-weight: 600;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-main {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, var(--istanbul-blue) 0%, var(--istanbul-blue-light) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-main::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0L100 50L50 100L0 50Z' fill='none' stroke='%23ffffff' stroke-opacity='0.1'/%3E%3C/svg%3E");
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            from { transform: translate(0, 0); }
+            to { transform: translate(-50px, -50px); }
+        }
+
+        .about-image-icon {
+            font-size: 8rem;
+            z-index: 1;
+        }
+
+        .about-image-accent {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 200px;
+            height: 200px;
+            background: var(--turkish-red);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .about-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--istanbul-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .about-feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .about-feature span {
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 8rem 2rem;
+            background: var(--cream);
+            position: relative;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(26, 58, 107, 0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--turkish-red) 0%, var(--turkish-red-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:nth-child(2) .product-image {
+            background: linear-gradient(135deg, var(--istanbul-blue) 0%, var(--istanbul-blue-light) 100%);
+        }
+
+        .product-card:nth-child(3) .product-image {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+        }
+
+        .product-card:nth-child(4) .product-image {
+            background: linear-gradient(135deg, #4A7C59 0%, #6B9B6B 100%);
+        }
+
+        .product-card:nth-child(5) .product-image {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+        }
+
+        .product-card:nth-child(6) .product-image {
+            background: linear-gradient(135deg, #6B5B95 0%, #8B7BB5 100%);
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--istanbul-blue);
+            margin-bottom: 0.75rem;
+        }
+
+        .product-content p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Specials Banner */
+        .specials {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--istanbul-blue) 0%, var(--istanbul-blue-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .specials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M40 0l40 40-40 40L0 40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .specials-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .specials h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .specials p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .specials-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .specials-feature {
+            text-align: center;
+            color: white;
+        }
+
+        .specials-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .specials-feature span {
+            display: block;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Hours & Location */
+        .info {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .info-card {
+            background: var(--cream-light);
+            padding: 3rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--turkish-red);
+        }
+
+        .info-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--istanbul-blue);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--cream-dark);
+            font-size: 1.05rem;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hours-list .day {
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        .hours-list .time {
+            color: var(--turkish-red);
+            font-weight: 500;
+        }
+
+        .location-details {
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .location-details p {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .location-details a {
+            color: var(--istanbul-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .location-details a:hover {
+            color: var(--turkish-red);
+        }
+
+        .map-placeholder {
+            margin-top: 2rem;
+            height: 200px;
+            background: var(--cream-dark);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--istanbul-blue);
+            opacity: 0.5;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 2rem;
+            background: var(--cream);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(26, 58, 107, 0.1);
+        }
+
+        .contact-form h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--istanbul-blue);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--cream-dark);
+            border-radius: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--istanbul-blue);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-info-side {
+            padding: 2rem 0;
+        }
+
+        .contact-info-side h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--istanbul-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info-side p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--istanbul-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--turkish-red);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand h4 span:first-child {
+            color: var(--turkish-red);
+        }
+
+        .footer-brand h4 span:last-child {
+            color: var(--cream);
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .footer-links h5 {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .about-grid,
+            .info-grid,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--cream-light);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .about-image-main {
+                height: 350px;
+            }
+
+            .about-image-accent {
+                display: none;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .specials-features {
+                gap: 2rem;
+            }
+
+            .info-card {
+                padding: 2rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: var(--cream-light);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(26, 58, 107, 0.08);
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(26, 58, 107, 0.15);
+        }
+
+        .review-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .review-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, var(--cream-light), transparent);
+        }
+
+        .review-content {
+            padding: 1.5rem;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--istanbul-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .review-meta h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--istanbul-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .review-stars {
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .review-source {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.4rem 0.8rem;
+            background: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--charcoal);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .review-source:hover {
+            background: var(--istanbul-blue);
+            color: white;
+        }
+
+        .review-source svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="pattern-overlay"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo"><img src="logo.png" alt="Bazaar Istanbul" style="height: 120px;"></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#info">Visit Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-decoration"></div>
+        <div class="hero-decoration"></div>
+        <div class="hero-content">
+            <span class="hero-badge">Spring, Texas</span>
+            <h1>Bazaar Istanbul <span>Spring</span></h1>
+            <p class="hero-tagline">Premium Halal Meats & International Groceries — Bringing the Authentic Flavors of the Mediterranean to Your Kitchen</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">Explore Products</a>
+                <a href="#info" class="btn btn-secondary">Visit Our Store</a>
+                <a href="tel:8327321944" class="btn btn-primary">Call Now: (832) 732-1944</a>
+            </div>
+        </div>
+        <a href="#about" class="hero-scroll">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">Our Story</span>
+                <h2 class="section-title">A Taste of Istanbul in Spring</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <div class="about-image-main">
+                        <span class="about-image-icon">🕌</span>
+                    </div>
+                    <div class="about-image-accent"></div>
+                </div>
+                <div class="about-content reveal">
+                    <h3>Your One-Stop International Market</h3>
+                    <p>Welcome to Bazaar Istanbul Spring, your premier destination for authentic halal meats and international groceries in the Spring and Woodlands area. We bring the vibrant flavors of Turkey, the Middle East, and the Mediterranean directly to your neighborhood.</p>
+                    <p>Our carefully curated selection features premium halal meats, fresh produce, traditional Turkish delights, artisanal bakery items, and specialty groceries from Europe and beyond. Every product is chosen with care to ensure you experience the authentic taste of home.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">✓</div>
+                            <span>100% Halal Certified</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">✓</div>
+                            <span>Fresh Daily</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">✓</div>
+                            <span>Imported Products</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">✓</div>
+                            <span>Family Owned</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">What We Offer</span>
+                <h2 class="section-title">Our Premium Selection</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card reveal">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                    <div class="product-content">
+                        <h3>Halal Meats</h3>
+                        <p>Premium halal beef, lamb, goat, chicken, and turkey. Whole animals available with professional cutting and packaging services for Qurbani and special occasions.</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                    <div class="product-content">
+                        <h3>Turkish Delights</h3>
+                        <p>Authentic baklava, Turkish delight (lokum), künefe, and traditional sweets imported directly from Turkey's finest confectioners.</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                    <div class="product-content">
+                        <h3>Dairy & Cheese</h3>
+                        <p>Specialty Mediterranean cheeses including feta, halloumi, and kashkaval, plus fresh yogurt and traditional dairy products.</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                    <div class="product-content">
+                        <h3>Fresh Produce</h3>
+                        <p>Seasonal vegetables and fruits, California grape leaves, fresh herbs, and specialty produce for authentic Mediterranean cooking.</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                    <div class="product-content">
+                        <h3>Fresh Bakery</h3>
+                        <p>Daily-baked Turkish pita, simit (sesame bread rings), börek, and traditional pastries fresh from our ovens.</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1563822249366-3efb23b8e0c9?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                    <div class="product-content">
+                        <h3>Specialty Items</h3>
+                        <p>Turkish tea, coffee, olive oils, spices, preserves, Dubai chocolate, and international beverages from across the Mediterranean.</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                    <div class="product-content">
+                        <h3>Desi Groceries</h3>
+                        <p>Authentic Pakistani and Indian groceries including Shan masalas, basmati rice, daal, paneer, ready-to-eat meals, and a wide selection of South Asian spices and ingredients.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">Customer Love</span>
+                <h2 class="section-title">What Our Community Says</h2>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card reveal">
+                    <div class="review-image" style="background-image: url('https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=600&q=80');"></div>
+                    <div class="review-content">
+                        <div class="review-header">
+                            <div class="review-avatar">R</div>
+                            <div class="review-meta">
+                                <h4>Ronald Kelley</h4>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Bazaar Istanbul Spring is my new go-to for authentic international groceries. They offer exceptional variety—everything from millet and buckwheat to low-sugar fruit jams. Their meats are hygienically displayed and of top quality, and prices are often lower than big chains. A must-visit for lovers of Eastern European, Middle Eastern, and Mediterranean flavors!"</p>
+                        <a href="https://www.google.com/maps/place/Bazaar+Istanbul+Spring" target="_blank" class="review-source">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                            Google Review
+                        </a>
+                    </div>
+                </div>
+                <div class="review-card reveal">
+                    <div class="review-image" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80');"></div>
+                    <div class="review-content">
+                        <div class="review-header">
+                            <div class="review-avatar">M</div>
+                            <div class="review-meta">
+                                <h4>Marc Cole</h4>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">"I grew up in Turkey, and one of my favorite food memories was a Sujuk Sandwich. I was able to recreate that childhood favorite perfectly here! Honestly, if you're looking for anything Turkish, this place has it, from spices and cheeses to sweets and snacks. The staff was friendly, the selection was amazing, and the whole experience brought back the best memories."</p>
+                        <a href="https://www.google.com/maps/place/Bazaar+Istanbul+Spring" target="_blank" class="review-source">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                            Google Review
+                        </a>
+                    </div>
+                </div>
+                <div class="review-card reveal">
+                    <div class="review-image" style="background-image: url('https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=600&q=80');"></div>
+                    <div class="review-content">
+                        <div class="review-header">
+                            <div class="review-avatar">I</div>
+                            <div class="review-meta">
+                                <h4>Irfan Soylemez</h4>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Super friendly and welcoming. Rich variety products, fresh meat and green grocery section. We had breakfast and after shopping gentleman offered Turkish coffee with baklava. Awesome!"</p>
+                        <a href="https://www.google.com/maps/place/Bazaar+Istanbul+Spring" target="_blank" class="review-source">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                            Google Review
+                        </a>
+                    </div>
+                </div>
+                <div class="review-card reveal">
+                    <div class="review-image" style="background-image: url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=600&q=80');"></div>
+                    <div class="review-content">
+                        <div class="review-header">
+                            <div class="review-avatar">M</div>
+                            <div class="review-meta">
+                                <h4>M R</h4>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Well not just a grocery store but also a blessing! Halal meat professionally cut and presented, great prices! This is the most clean hygienic, new, and beautiful international grocery store I have came across. Middleeastern, Turkish, Pakistani, Indian they have huge variety. You will like it!"</p>
+                        <a href="https://www.google.com/maps/place/Bazaar+Istanbul+Spring" target="_blank" class="review-source">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                            Google Review
+                        </a>
+                    </div>
+                </div>
+                <div class="review-card reveal">
+                    <div class="review-image" style="background-image: url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80');"></div>
+                    <div class="review-content">
+                        <div class="review-header">
+                            <div class="review-avatar">V</div>
+                            <div class="review-meta">
+                                <h4>Vivek Kumar</h4>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Excellent variety and selection of Asian and Middle Eastern stuff. Great meats, great marbling on the steaks. Good selection of Indian spices as well, excellent vegetable selection. Gone are the days where I need to travel all the way down to Bellaire or Hillcroft to get my Asian essentials for cooking!"</p>
+                        <a href="https://www.google.com/maps/place/Bazaar+Istanbul+Spring" target="_blank" class="review-source">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                            Google Review
+                        </a>
+                    </div>
+                </div>
+                <div class="review-card reveal">
+                    <div class="review-image" style="background-image: url('https://images.unsplash.com/photo-1534483509719-3feaee7c30da?w=600&q=80');"></div>
+                    <div class="review-content">
+                        <div class="review-header">
+                            <div class="review-avatar">P</div>
+                            <div class="review-meta">
+                                <h4>Parisa</h4>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="review-text">"I am thrilled to have this Middle Eastern market open up locally! The store offers an incredible selection representing Indo-Pakistani, Turkish, Iranian, Arab, and other Middle Eastern flavors. They have the best feta cheese, paneer, labneh, beef bologna, and an amazing tea selection. This store is truly a gem!"</p>
+                        <a href="https://www.google.com/maps/place/Bazaar+Istanbul+Spring" target="_blank" class="review-source">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                            Google Review
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specials Banner -->
+    <section class="specials">
+        <div class="specials-content reveal">
+            <h2>Fresh & Low Prices Every Day</h2>
+            <p>Experience the authentic taste of the Mediterranean without the journey. Quality products at prices that make sense for your family.</p>
+            <a href="#contact" class="btn btn-primary">Contact Us for Weekly Specials</a>
+            <a href="tel:8327321944" class="btn btn-secondary" style="background: white; color: var(--istanbul-blue); border: 2px solid white;">Call Now</a>
+            <div class="specials-features">
+                <div class="specials-feature">
+                    <div class="specials-feature-icon">🐑</div>
+                    <span>Whole Animal Orders</span>
+                </div>
+                <div class="specials-feature">
+                    <div class="specials-feature-icon">🎁</div>
+                    <span>Ramadan Specials</span>
+                </div>
+                <div class="specials-feature">
+                    <div class="specials-feature-icon">🎉</div>
+                    <span>Eid Preparations</span>
+                </div>
+                <div class="specials-feature">
+                    <div class="specials-feature-icon">🐟</div>
+                    <span>Fresh Fish Saturdays</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours & Location -->
+    <section class="info" id="info">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">Visit Us</span>
+                <h2 class="section-title">Store Hours & Location</h2>
+            </div>
+            <div class="info-grid">
+                <div class="info-card reveal">
+                    <h3>🕐 Store Hours</h3>
+                    <ul class="hours-list">
+                        <li>
+                            <span class="day">Monday - Thursday</span>
+                            <span class="time">9:00 AM - 9:00 PM</span>
+                        </li>
+                        <li>
+                            <span class="day">Friday</span>
+                            <span class="time">9:00 AM - 10:00 PM</span>
+                        </li>
+                        <li>
+                            <span class="day">Saturday</span>
+                            <span class="time">9:00 AM - 10:00 PM</span>
+                        </li>
+                        <li>
+                            <span class="day">Sunday</span>
+                            <span class="time">9:00 AM - 9:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="info-card reveal">
+                    <h3>📍 Location</h3>
+                    <div class="location-details">
+                        <p>
+                            <span>📌</span>
+                            <span>25115 Gosling Road<br>Spring, TX 77389</span>
+                        </p>
+                        <p>
+                            <span>📞</span>
+                            <a href="tel:8323673839">(832) 367-3839</a>
+                        </p>
+                        </div>
+                    <div class="map-placeholder" style="background: none; height: auto;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.0!2d-95.5041!3d30.0189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640d7a0f0f0f0f0%3A0x0!2sBazaar%20Istanbul%20Spring!5e0!3m2!1sen!2sus!4v1702656000000!5m2!1sen!2sus" width="100%" height="200" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <a href="https://www.google.com/maps/dir//25115+Gosling+Rd,+Spring,+TX+77389" target="_blank" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Get Directions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">Get in Touch</span>
+                <h2 class="section-title">Contact Us</h2>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-form reveal">
+                    <h3>Send Us a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="How can we help you? Ask about special orders, product availability, or bulk pricing..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info-side reveal">
+                    <h3>Let's Connect</h3>
+                    <p>Have questions about our products or want to place a special order? We're here to help! Whether you're planning for Eid, Ramadan, or just stocking up on your favorite Mediterranean ingredients, our team is ready to assist you.</p>
+                    <p>For bulk orders, whole animal purchases, or special requests, please don't hesitate to reach out. We offer custom cutting and packaging services to meet your specific needs.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/bazaaristanbulspring/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61568387107749" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.google.com/maps/place/Bazaar+Istanbul+Spring" class="social-link" target="_blank" rel="noopener" aria-label="Google Reviews">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo2.png" alt="Bazaar Istanbul" style="height: 200px; margin-bottom: 1rem;">
+                <p>Bringing the authentic flavors of Istanbul and the Mediterranean to Spring, Texas. Your trusted source for premium halal meats and international groceries.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#info">Store Hours</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Products</h5>
+                <ul>
+                    <li><a href="#products">Halal Meats</a></li>
+                    <li><a href="#products">Turkish Sweets</a></li>
+                    <li><a href="#products">Fresh Bakery</a></li>
+                    <li><a href="#products">Specialty Items</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Contact</h5>
+                <ul>
+                    <li><a href="tel:8323673839">(832) 367-3839</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="https://www.instagram.com/bazaaristanbulspring/" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=61568387107749" target="_blank">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Bazaar Istanbul Spring. All rights reserved. | 25115 Gosling Road, Spring, TX 77389</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission (placeholder)
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
